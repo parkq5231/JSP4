@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,6 @@
 <title>MiniPro</title>
 </head>
 <body>
-	나오는지 확인한다.
+	<jsp:forward page="main.do" />
 </body>
 </html>

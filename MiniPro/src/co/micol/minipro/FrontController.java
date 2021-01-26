@@ -3,6 +3,7 @@ package co.micol.minipro;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.micol.minipro.common.Service;
+import co.micol.minipro.member.service.Login;
+import co.micol.minipro.member.service.LoginForm;
+import co.micol.minipro.member.service.Logout;
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +26,12 @@ public class FrontController extends HttpServlet {
 	}
 
 	public void init(ServletConfig config) throws ServletException {
-		map.put("/main.do", new MainService());
+		map.put("/main.do", new MainService());	//main화면 호출
+		map.put("/loginForm.do", new LoginForm());//로그인 폼 호출
+		map.put("/login.do", new Login());		//로그인 처리
+		map.put("/logout.do", new Logout());
+		map.put("/logout.do", new Logout());
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -32,9 +41,13 @@ public class FrontController extends HttpServlet {
 		String uri =request.getRequestURI();
 		String path = uri.substring(contextPath.length());		//실제 요청한 경로 확인	//uri에서 contextPath뺀다는 의미임
 		
-		Service service = map.get(path);
-		String viewPage = service.run(request, response);
-				
+		Service service = map.get(path);						//적절한 command를 찾는 부분
+		//Service se = new login();
+		String viewPage = service.run(request, response);		//실행해서 결과를 돌려 주는 페이지
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
+		
 	}
 
 }

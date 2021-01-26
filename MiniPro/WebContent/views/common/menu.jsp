@@ -9,6 +9,7 @@
 <style>
 #topMenu {
 	height: 30px;
+	width:820px;
 }
 
 #topMenu ul li {
@@ -25,7 +26,7 @@
 	text-decoration: none;
 	color: white;
 	display: block;
-	width: 150px;
+	width: 145px;
 	font-size: 12px;
 	font-weight: bold;
 	font-family: "Trebuchet MS";
@@ -41,10 +42,10 @@
 	<div align="center">
 		<nav id="topMenu">
 			<ul>
-				<li><a class="menuLink" href="#">Home</a></li>
+				<li><a class="menuLink" href="main.do">Home</a></li>
 				<li>|</li>
 				<c:if test="${mid eq null }">
-					<li><a class="menuLink" href="#">Login</a></li>
+					<li><a class="menuLink" href="loginForm.do">Login</a></li>
 					<li>|</li>
 				</c:if>
 				<li><a class="menuLink" href="#">MemberJoin</a></li>
@@ -54,7 +55,7 @@
 				<li><a class="menuLink" href="#">공지사항</a></li>
 				<c:if test="${mid ne null}">
 					<li>|</li>
-					<li><a class="menuLink" href="#">Logout</a></li>
+					<li><a class="menuLink" href="logout.do">Logout</a></li>
 				</c:if>
 			</ul>
 		</nav>

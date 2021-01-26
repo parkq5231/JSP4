@@ -3,10 +3,9 @@ package co.micol.minipro.member.service;
 public class MemberVo {
 	private String mId;
 	private String mName;
-	private String mPw;
+	private String mPassword;
 	private String mAuth;
 
-	//
 	public String getmId() {
 		return mId;
 	}
@@ -23,12 +22,12 @@ public class MemberVo {
 		this.mName = mName;
 	}
 
-	public String getmPw() {
-		return mPw;
+	public String getmPassword() {
+		return mPassword;
 	}
 
-	public void setmPw(String mPw) {
-		this.mPw = mPw;
+	public void setmPassword(String mPassword) {
+		this.mPassword = mPassword;
 	}
 
 	public String getmAuth() {
@@ -38,4 +37,7 @@ public class MemberVo {
 	public void setmAuth(String mAuth) {
 		this.mAuth = mAuth;
 	}
+
+	//
+
 }
