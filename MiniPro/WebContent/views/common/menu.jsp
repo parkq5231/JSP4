@@ -9,7 +9,7 @@
 <style>
 #topMenu {
 	height: 30px;
-	width:820px;
+	width: 820px;
 }
 
 #topMenu ul li {
@@ -47,9 +47,9 @@
 				<c:if test="${mid eq null }">
 					<li><a class="menuLink" href="loginForm.do">Login</a></li>
 					<li>|</li>
+					<li><a class="menuLink" href="memberJoinForm.do">회원가입</a></li>
+					<li>|</li>
 				</c:if>
-				<li><a class="menuLink" href="#">MemberJoin</a></li>
-				<li>|</li>
 				<li><a class="menuLink" href="#">자유게시판</a></li>
 				<li>|</li>
 				<li><a class="menuLink" href="#">공지사항</a></li>

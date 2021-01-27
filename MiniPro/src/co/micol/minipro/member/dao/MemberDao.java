@@ -14,6 +14,7 @@ public class MemberDao extends DAO implements DbInterface<MemberVo> {
 	private ResultSet rs;
 	//
 	private final String memberSelect = "select * from member where mid=? and mpw=?";
+	private final String memberInsert = "insert into member(mid,mname,mpw) values(?,?,?)";
 
 	@Override
 	public ArrayList<MemberVo> selectList() {
@@ -43,8 +44,18 @@ public class MemberDao extends DAO implements DbInterface<MemberVo> {
 
 	@Override
 	public int insert(MemberVo vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int n = 0;
+		try {
+			psmt = conn.prepareStatement(memberInsert);
+			psmt.setString(1, vo.getmId());
+			psmt.setString(2, vo.getmName());
+			psmt.setString(3, vo.getmPassword());
+			n = psmt.executeUpdate();
+			System.out.println(n + "건이 추가되었습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
 	}
 
 	@Override
@@ -59,6 +70,22 @@ public class MemberDao extends DAO implements DbInterface<MemberVo> {
 		return 0;
 	}
 
+	// 아이디 존재 유무만 판단하니 boolean을 쓰는 것
+	public boolean isidCheck(String id) {	//id중복체크 method	//관례상 bool은 is붙임
+		boolean bool = true;
+		String sql = "select mid from member where mid = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				bool = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();// console에 오류 뿌려준다는 의미
+		}
+		return bool;
+	}
 	private void close() {
 		try {
 			if (rs != null)
